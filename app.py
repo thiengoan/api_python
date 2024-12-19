@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from modules.selenium import get_reviews_with_selenium # Import the function from the modules package
 from modules.predict import predict_bi_lstm, predict_naive_bayes, predict_phobert, predict_gpt
+from modules.preprocess import preprocess_text
 
 app = Flask(__name__)
 
@@ -76,6 +77,7 @@ def addDataset():
         
         with open('output.csv', 'a', newline='', encoding='utf-8') as csvFile:
             writer = csv.writer(csvFile)
+            review = preprocess_text(review)
             writer.writerow([review, prediction])
 
         return jsonify({ "status": "success" }), 200

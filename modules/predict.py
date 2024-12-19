@@ -28,8 +28,8 @@ def predict_bi_lstm(reviews):
 
 # Multinomial Naive Bayes
 def predict_naive_bayes(reviews):
-    model = joblib.load('./models/naive_bayes/multinomial_nb_model.joblib')
-    vectorizer = joblib.load('./models/naive_bayes/count_vectorizer.joblib')
+    model = joblib.load('./models/naive_bayes/model/multinomial_nb_model.joblib')
+    vectorizer = joblib.load('./models/naive_bayes/model/count_vectorizer.joblib')
 
     predictions = []
     for review in reviews:
