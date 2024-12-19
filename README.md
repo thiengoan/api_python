@@ -1,4 +1,4 @@
-# 📘 Project Title
+# 📘 SEMANTIC REIVEWS TIKI
 
 Using semantic analysis on reviews from Tiki, businesses can identify patterns and trends.
 
