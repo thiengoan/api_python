@@ -1,0 +1,12 @@
+flask==
+selenium==
+joblib==
+transformers==
+torch==
+scikit-learn==
+numpy==
+pandas==
+underthesea==
+openai==
+os==
+requests==
