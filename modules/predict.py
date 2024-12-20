@@ -10,8 +10,8 @@ import openai
 
 # Hàm dự đoán với mô hình Logistic Regression
 def predict_bi_lstm(reviews):
-    model = load_model('./models/lstm/models/sentiment_model.keras')
-    with open('./models/lstm/models/tokenizer.pickle', 'rb') as handle:
+    model = load_model('./models/lstm/model/sentiment_model.keras')
+    with open('./models/lstm/model/tokenizer.pickle', 'rb') as handle:
         tokenizer = pickle.load(handle)
     predictions = []
 
@@ -29,6 +29,7 @@ def predict_bi_lstm(reviews):
 # Multinomial Naive Bayes
 def predict_naive_bayes(reviews):
     model = joblib.load('./models/naive_bayes/model/multinomial_nb_model.joblib')
+    # load the model 
     vectorizer = joblib.load('./models/naive_bayes/model/count_vectorizer.joblib')
 
     predictions = []
