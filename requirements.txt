@@ -10,3 +10,7 @@ numpy
 pandas
 underthesea
 openai
+matplotlib
+imblearn
+wordcloud
+webdriver_manager
