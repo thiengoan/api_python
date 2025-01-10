@@ -8,10 +8,11 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 from modules.preprocess import preprocess_text
 import csv
+import re
 
 def get_reviews_with_selenium(url):
     chrome_options = Options()
-    ##chrome_options.add_argument("--headless=new")
+    chrome_options.add_argument("--headless=new")
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
@@ -41,12 +42,13 @@ def get_reviews_with_selenium(url):
                 title = title.text.strip()
                 if text and title:  # Chỉ thêm nếu nội dung không rỗng
                     with open('output.csv', 'a', newline='', encoding='utf-8') as csvFile:
-                        writer = csv.writer(csvFile)
-                        text = preprocess_text(text)
+                        writer = csv.writer(csvFile)                                               
+                        if len(text) < 10:
+                            continue
                         if title in ['Hài lòng', 'Cực kì hài lòng']:
-                            title_value = 0
+                            title_value = 0 # Positive
                         else:
-                            title_value = 1
+                            title_value = 1 # Negative
                         writer.writerow([text, title_value])
 
             time.sleep(2)  # Tạm dừng để tránh bị phát hiện như bot
