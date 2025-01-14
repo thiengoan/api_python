@@ -20,7 +20,7 @@ def predict_bi_lstm(reviews):
         input = tokenizer.texts_to_sequences([sentence])
         padded_sequence = pad_sequences(input, maxlen=150)
         prediction = model.predict(padded_sequence, verbose=0)[0][0]
-        sentiment = "Positive" if prediction > 0.5 else "Negative"
+        sentiment = "Positive" if prediction < 0.5 else "Negative"
         prediction if prediction > 0.5 else 1 - prediction
         predictions.append({"review": review, "prediction": sentiment, "confidence": float(prediction)})
 
@@ -37,7 +37,7 @@ def predict_naive_bayes(reviews):
         sentence = preprocess_text(review)
         input = vectorizer.transform([sentence])
         prediction = model.predict(input)[0]
-        sentiment = "Positive" if prediction > 0.5 else "Negative"
+        sentiment = "Positive" if prediction < 0.5 else "Negative"
         confidence = float(model.predict_proba(input).max())
         predictions.append({"review": review, "prediction": sentiment, "confidence": confidence})
 
@@ -47,11 +47,13 @@ def predict_naive_bayes(reviews):
 def predict_phobert(reviews):
 
     model = RobertaForSequenceClassification.from_pretrained("wonrax/phobert-base-vietnamese-sentiment")
-    tokenizer = AutoTokenizer.from_pretrained("wonrax/phobert-base-vietnamese-sentiment", use_fast=False)
+    tokenizer = AutoTokenizer.from_pretrained("wonrax/phobert-base-vietnamese-sentiment")
     
     predictions = []
 
     for review in reviews:
+
+        #sentence = preprocess_text(review)
         input_ids = torch.tensor([tokenizer.encode(review)])
         
         with torch.no_grad():
