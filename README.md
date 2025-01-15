@@ -1,7 +1,7 @@
 # 📘 SEMANTIC REVIEWS TIKI EC.
 
 Using semantic analysis on reviews from Tiki, businesses can identify patterns and trends.
-
+Dataset: https://www.kaggle.com/datasets/ngoantrn/crawl-data
 ---
 
 ## 📋 Table of Contents
